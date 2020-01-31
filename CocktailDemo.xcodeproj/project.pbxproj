@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4336C37746726256C421E8D9 /* Pods_CocktailDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E84944D2A7C205D81B0F98 /* Pods_CocktailDemo.framework */; };
 		4FA9F08E23E46DD700651220 /* CocktailDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9F08D23E46DD700651220 /* CocktailDataTableViewCell.swift */; };
+		4FA9F09223E4721800651220 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9F09123E4721800651220 /* Helper.swift */; };
 		9E349F5223E4213C00A50A9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E349F5123E4213C00A50A9C /* AppDelegate.swift */; };
 		9E349F5423E4213C00A50A9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E349F5323E4213C00A50A9C /* ViewController.swift */; };
 		9E349F5723E4213C00A50A9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E349F5523E4213C00A50A9C /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		01E84944D2A7C205D81B0F98 /* Pods_CocktailDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocktailDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA9F08D23E46DD700651220 /* CocktailDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocktailDataTableViewCell.swift; sourceTree = "<group>"; };
+		4FA9F09123E4721800651220 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		9E349F4E23E4213C00A50A9C /* CocktailDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocktailDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E349F5123E4213C00A50A9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E349F5323E4213C00A50A9C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				9E349F5123E4213C00A50A9C /* AppDelegate.swift */,
+				4FA9F09123E4721800651220 /* Helper.swift */,
 				9E349F5323E4213C00A50A9C /* ViewController.swift */,
 				4FA9F08D23E46DD700651220 /* CocktailDataTableViewCell.swift */,
 				9E349F5523E4213C00A50A9C /* Main.storyboard */,
@@ -209,6 +212,7 @@
 				4FA9F08E23E46DD700651220 /* CocktailDataTableViewCell.swift in Sources */,
 				9E349F5423E4213C00A50A9C /* ViewController.swift in Sources */,
 				9E349F5223E4213C00A50A9C /* AppDelegate.swift in Sources */,
+				4FA9F09223E4721800651220 /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
