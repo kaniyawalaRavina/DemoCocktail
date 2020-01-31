@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     
     // MARK:- Variable
     private var lastContentOffset: CGFloat = 0 // we set a variable to hold the contentOffSet before scroll view scrolls
+    private var arrdrinks = [Cocktail]()
     
     // MARK:- LifeCycle
     override func viewDidLoad() {
@@ -40,7 +41,7 @@ class ViewController: UIViewController {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.lastContentOffset = scrollView.contentOffset.y
     }
-
+    
     // while scrolling this delegate is being called so you may now check which direction your scrollView is being scrolled to
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if self.lastContentOffset < scrollView.contentOffset.y {
@@ -70,7 +71,7 @@ class ViewController: UIViewController {
 // MARK:- UITableViewDelegate, UITableViewDataSource
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return arrdrinks.count
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -80,13 +81,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         UIView.animate(withDuration: 0.8, animations: {
-         cell.contentView.alpha = 1
+            cell.contentView.alpha = 1
         })
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CocktailDataTableViewCell", for: indexPath) as! CocktailDataTableViewCell
-        
+        let currentObj = arrdrinks[indexPath.row]
+        cell.contentView.alpha = 0
+        cell.configureDataWithCell(currentObj)
         return cell
     }
     
@@ -105,7 +108,28 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK:- API Call
 extension ViewController {
     private func fetchCocktails() {
-        
+        let url = URL(string: "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=\(txtIngredients.text!)")
+        URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
+            guard let data = data, error == nil else { return }
+            self.arrdrinks.removeAll()
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]
+                let posts = json?["drinks"] as? [[String: Any]] ?? [[String: Any]]()
+                DispatchQueue.main.async {
+                    self.arrdrinks = Cocktail.getArrayCocktail(arrData: posts)
+                    self.tblCocktailList.reloadData()
+                }
+                
+            } catch _ {
+                
+                DispatchQueue.main.async {
+                    self.tblCocktailList.reloadData()
+                    let alert = UIAlertController(title: "Error", message: "Enter ingredient name", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }).resume()
     }
 }
 

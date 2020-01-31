@@ -19,11 +19,23 @@ class CocktailDataTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        setupUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    // MARK:- Methods
+    private func setupUI() {
+        imgCocktail.layer.cornerRadius = 8
+        imgCocktail.clipsToBounds = true
+    }
+    
+    func configureDataWithCell(_ data: Cocktail) {
+        lblCocketailName.text = data.drink
+        imgCocktail.sd_setImage(with: URL(string: data.thumbnail), placeholderImage: nil, options: .retryFailed, completed: nil)
     }
 }
