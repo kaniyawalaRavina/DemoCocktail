@@ -102,6 +102,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentObj = arrdrinks[indexPath.row]
+        let navVc = CocktailDetailViewController.instantiate(fromAppStoryboard: .Main)
+        navVc.selectedDrink = currentObj
+        navigationController?.pushViewController(navVc, animated: true)
     }
 }
 
@@ -121,7 +125,6 @@ extension ViewController {
                 }
                 
             } catch _ {
-                
                 DispatchQueue.main.async {
                     self.tblCocktailList.reloadData()
                     let alert = UIAlertController(title: "Error", message: "Enter ingredient name", preferredStyle: UIAlertController.Style.alert)
